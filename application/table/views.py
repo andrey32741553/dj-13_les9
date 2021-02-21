@@ -1,17 +1,11 @@
 import csv
-from .models import CSVPath
+from .models import CSVPath, TableOption
 from django.shortcuts import render
 
-
 csv_path = CSVPath().get_path()
-CSV_FILENAME = 'phones_info.csv'
-COLUMNS = [
-    {'name': 'id', 'width': 1},
-    {'name': 'name', 'width': 3},
-    {'name': 'price', 'width': 2},
-    {'name': 'release_date', 'width': 2},
-    {'name': 'lte_exists', 'width': 1},
-]
+table_option = TableOption().get_info()
+CSV_FILENAME = str(CSVPath.objects.last())
+COLUMNS_from_DB = list(TableOption.objects.all())
 
 
 def table_view(request):
@@ -29,7 +23,7 @@ def table_view(request):
                 table.append(row)
 
         context = {
-            'columns': COLUMNS, 
+            'columns': COLUMNS_from_DB,
             'table': table, 
             'csv_file': CSV_FILENAME
         }

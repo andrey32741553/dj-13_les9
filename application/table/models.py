@@ -2,10 +2,24 @@ import glob
 from django.db import models
 
 
+COLUMNS = [
+    {'name': 'id', 'width': 1},
+    {'name': 'name', 'width': 3},
+    {'name': 'price', 'width': 2},
+    {'name': 'release_date', 'width': 2},
+    {'name': 'lte_exists', 'width': 1},
+]
+
+
 class TableOption(models.Model):
 
     name = models.CharField("Название поля", max_length=60)
     width = models.PositiveIntegerField("Ширина поля", default=0)
+
+    def get_info(self):
+        for item in COLUMNS:
+            TableOption.objects.create(name=item['name'],
+                                       width=item['width'])
 
     def __str__(self):
         return self.name
