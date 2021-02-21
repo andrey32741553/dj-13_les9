@@ -6,7 +6,7 @@
         Для запуска на сервере, укажите свой API-ключ. Тестовый ключ НЕ БУДЕТ работать на других сайтах.
         Получить ключ можно в Кабинете разработчика: https://developer.tech.yandex.ru/keys/
     -->
-    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=<Ваш ключ API>" type="text/javascript"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=<Ваш API-ключ>" type="text/javascript"></script>
     <script type="text/javascript">
       ymaps.ready(init);
 
@@ -21,7 +21,7 @@
         {% for item in stations %}
           myMap.geoObjects
             .add(new ymaps.Placemark([{{ item.latitude }}, {{ item.longitude }}], {
-              balloonContent: '{{ item.route_numbers }}',
+<!--              balloonContent: '{{ item.route_numbers }}',-->
               iconCaption: '{{ item.name }}'
             }, {
               preset: 'islands#blueCircleDotIconWithCaption',
@@ -49,5 +49,5 @@
             </div>
         </div>
     </form>
-    <div id="map"></div>
+    <div id="map" style="width: 100%; height: 600px"></div>
 {% endblock %}
