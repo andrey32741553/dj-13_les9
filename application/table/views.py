@@ -2,8 +2,8 @@ import csv
 from .models import CSVPath, TableOption
 from django.shortcuts import render
 
-csv_path = CSVPath().get_path()
-table_option = TableOption().get_info()
+# csv_path = CSVPath().get_path()
+# table_option = TableOption().get_info()
 CSV_FILENAME = str(CSVPath.objects.last())
 COLUMNS_from_DB = list(TableOption.objects.all())
 
