@@ -2,14 +2,11 @@ import csv
 from .models import CSVPath, TableOption
 from django.shortcuts import render
 
-# csv_path = CSVPath().get_path()
-# table_option = TableOption().get_info()
-CSV_FILENAME = (str(CSVPath.objects.last())).split("\\")[-1]
-CSV_FILENAME_PATH = str(CSVPath.objects.last())
-COLUMNS_from_DB = list(TableOption.objects.all())
-
 
 def table_view(request):
+    CSV_FILENAME = (str(CSVPath.objects.last())).split("\\")[-1]
+    CSV_FILENAME_PATH = str(CSVPath.objects.last())
+    COLUMNS_from_DB = list(TableOption.objects.all())
     template = 'table.html'
     with open(CSV_FILENAME_PATH, 'rt') as csv_file:
         header = []
